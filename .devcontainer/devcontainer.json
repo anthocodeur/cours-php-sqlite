@@ -1,0 +1,15 @@
+{
+  "name": "PHP & SQLite",
+  "image": "mcr.microsoft.com/devcontainers/php:0-8.2",
+  "features": {
+    "ghcr.io/devcontainers/features/node:1": {}
+  },
+  "extensions": [
+    "felixfbecker.php-debug",
+    "bmewburn.vscode-intelephense-client",
+    "mrmlnc.vscode-apache",
+    "alexcvzz.vscode-sqlite"
+  ],
+  "forwardPorts": [8080],
+  "postCreateCommand": "sudo apt-get update && sudo apt-get install -y sqlite3 libsqlite3-dev && sudo docker-php-ext-install pdo_sqlite"
+}
