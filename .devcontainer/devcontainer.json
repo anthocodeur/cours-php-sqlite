@@ -1,6 +1,6 @@
 {
   "name": "PHP & SQLite",
-  "image": "mcr.microsoft.com/devcontainers/pphp:8.2-apache",
+  "image": "mcr.microsoft.com/devcontainers/php:8.2-apache",
   "features": {
     "ghcr.io/devcontainers/features/node:1": {}
   },
