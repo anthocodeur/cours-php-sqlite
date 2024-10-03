@@ -1,11 +1,10 @@
-# Utiliser une image de base avec PHP
-FROM php:8.1-cli
-
-# Installer Composer
-RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
-
-# Installer des extensions PHP si nécessaire
-RUN docker-php-ext-install pdo pdo_mysql
-
+FROM php:8.1-alpine
+RUN apk add --no-cache $PHPIZE_DEPS \
+    && pecl install xdebug-3.1.3 \
+    && docker-php-ext-enable xdebug \
+    && echo "xdebug.mode=debug" >> /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini \
+    && echo "xdebug.client_host=host.docker.internal" >> /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini
+    
 # Définir le répertoire de travail
 WORKDIR /workspaces/php-project
+CMD [ "php", "-S", "0.0.0.0:8000"]
