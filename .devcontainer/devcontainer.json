@@ -1,15 +1,10 @@
 {
-  "name": "PHP & SQLite",
-  "image": "php:8.2-apache",
+  "name": "PHP",
+  "image": "8.2-apache",
   "features": {
-    "ghcr.io/devcontainers/features/node:1": {}
+    "ghcr.io/devcontainers/features/node:1": {
+      "version": "lts"
+    }
   },
-  "extensions": [
-    "felixfbecker.php-debug",
-    "bmewburn.vscode-intelephense-client",
-    "mrmlnc.vscode-apache",
-    "alexcvzz.vscode-sqlite"
-  ],
-  "forwardPorts": [8080],
-  "postCreateCommand": "sudo apt-get update && sudo apt-get install -y sqlite3 libsqlite3-dev && sudo docker-php-ext-install pdo_sqlite"
+  "postCreateCommand": "sudo chmod a+x \"$(pwd)\" && sudo rm -rf /var/www/html && sudo ln -s \"$(pwd)\" /var/www/html; if [ -f composer.json ];then composer install;fi"
 }
